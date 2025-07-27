@@ -1,5 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
+import time
+
 from core.utils import save_conversations, load_conversations
 from core.config import configure_gemini, PAGE_CONFIG
 from core.utils import get_current_time, create_new_conversation
@@ -42,7 +44,7 @@ st.set_page_config(
 apply_custom_css()
 model = configure_gemini()
 
-# --- 4. TONE SELECTION DROPDOWN IN SIDEBAR ---
+# --- 4. TONE SELECTION + MUSIC PLAYER IN SIDEBAR ---
 TONE_OPTIONS = {
     "Compassionate Listener": "You are a compassionate listener — soft, empathetic, patient — like a therapist who listens without judgment.",
     "Motivating Coach": "You are a motivating coach — energetic, encouraging, and action-focused — helping the user push through rough days.",
@@ -52,6 +54,35 @@ TONE_OPTIONS = {
 }
 
 with st.sidebar:
+    # 🎶 Soothing Music Section
+    st.markdown("### 🎧 Soothing Music")
+
+    # 🌿 Nature Image Slideshow
+    nature_images = [
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",  # Forest
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",  # Beach
+        "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",  # Mountains
+        "https://images.unsplash.com/photo-1502082553048-f009c37129b9",  # Lake
+    ]
+    img_index = int(time.time() / 5) % len(nature_images)
+    st.image(nature_images[img_index], use_column_width=True, caption="", clamp=True)
+
+    # 🎵 Spotify Embed Player
+    st.markdown(
+        """
+        <div style="margin-top:10px; border-radius: 12px; background: rgba(255, 255, 255, 0.07); padding: 10px;">
+            <iframe style="border-radius:12px" 
+            src="https://open.spotify.com/embed/playlist/6zCID88oNjNv9zx6puDHKj?utm_source=generator" 
+            width="100%" height="152" frameBorder="0" allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+            </iframe>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 🧠 Tone Selector Header
     st.header("🧠 Choose Your AI Tone")
     selected_tone = st.selectbox(
         "Select a personality tone:",
@@ -64,7 +95,7 @@ with st.sidebar:
 def get_tone_prompt():
     return TONE_OPTIONS.get(st.session_state.get("selected_tone", "Compassionate Listener"), TONE_OPTIONS["Compassionate Listener"])
 
-# --- 6. RENDER SIDEBAR ---
+# --- 6. RENDER SIDEBAR CONTENT ---
 render_sidebar()
 
 # --- 7. PAGE ROUTING ---
