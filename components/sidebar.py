@@ -5,7 +5,7 @@ from core.config import configure_gemini, PAGE_CONFIG
 from core.utils import get_current_time, create_new_conversation
 from css.styles import apply_custom_css
 from components.header import render_header
-from components.sidebar import render_sidebar
+#from components.sidebar import render_sidebar
 from components.chat_interface import render_chat_interface, handle_chat_input
 from components.emergency_page import render_emergency_page
 import time
