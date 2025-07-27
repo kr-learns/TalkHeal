@@ -7,7 +7,8 @@ from css.styles import apply_custom_css
 from components.header import render_header
 #from components.sidebar import render_sidebar
 from components.chat_interface import render_chat_interface, handle_chat_input
-from components.emergency_page import render_emergency_page
+#from components.emergency_page import render_emergency_page
+from components.shared_globals import GLOBAL_RESOURCES  
 import time
 
 # --- 1. INITIALIZE SESSION STATE ---
