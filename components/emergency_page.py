@@ -1,7 +1,8 @@
 import streamlit as st
 from geopy.geocoders import Nominatim
 import urllib.parse
-from .sidebar import GLOBAL_RESOURCES
+#from .sidebar import GLOBAL_RESOURCES
+from components.shared_globals import GLOBAL_RESOURCES  # ✅ Corrected
 
 
 def render_emergency_page():
