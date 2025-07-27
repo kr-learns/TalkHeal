@@ -159,6 +159,42 @@ def render_sidebar():
 
         st.markdown("---")
 
+import streamlit as st
+import time
+
+# === 🎵 Soothing Music Player (Spotify Embed) ===
+st.markdown("### 🎶 Soothing Music")
+
+# 🖼️ Nature Image Slideshow
+nature_images = [
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb",  # Forest
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",  # Beach
+    "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",  # Mountains
+    "https://images.unsplash.com/photo-1502082553048-f009c37129b9",  # Lake
+]
+
+# Create a small, auto-updating slideshow effect
+img_index = int(time.time() / 5) % len(nature_images)  # Change every 5s
+st.image(nature_images[img_index], use_column_width=True, caption="", clamp=True)
+
+# 🎧 Embedded Spotify Player
+st.markdown(
+    """
+    <div style="margin-top:10px; border-radius: 12px; background: rgba(255, 255, 255, 0.07); padding: 10px;">
+        <iframe style="border-radius:12px" 
+        src="https://open.spotify.com/embed/playlist/6zCID88oNjNv9zx6puDHKj?utm_source=generator" 
+        width="100%" height="152" frameBorder="0" allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+        </iframe>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# ↓ Below this, the existing Emergency Help sidebar code should remain
+
+
         # --- DEDICATED EMERGENCY PAGE BUTTON ---
         if st.button("🚨 Emergency Help", use_container_width=True, type="secondary"):
             st.session_state.show_emergency_page = True
