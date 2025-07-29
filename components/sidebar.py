@@ -32,19 +32,19 @@ def render_sidebar():
         st.title("🌿 TalkHeal")
 
         # --- TONE SELECTION ---
-        st.header("🧠 Choose Your AI Tone")
-        selected_tone = st.selectbox(
-            "Select a personality tone:",
-            options=[
-                "Compassionate Listener",
-                "Motivating Coach",
-                "Wise Friend",
-                "Neutral Therapist",
-                "Mindfulness Guide"
-            ],
-            index=0
-        )
-        st.session_state.selected_tone = selected_tone
+       # st.header("🧠 Choose Your AI Tone")
+       # selected_tone = st.selectbox(
+           # "Select a personality tone:",
+           # options=[
+               # "Compassionate Listener",
+               # "Motivating Coach",
+               # "Wise Friend",
+                #"Neutral Therapist",
+               # "Mindfulness Guide"
+           # ],
+          #  index=0
+     #   )
+      #  st.session_state.selected_tone = selected_tone
 
         # --- SPOTIFY MUSIC PLAYER ---
         st.markdown("---")
