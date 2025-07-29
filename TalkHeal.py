@@ -44,12 +44,13 @@ if "selected_tone" not in st.session_state:
 # --- 2. SET PAGE CONFIG ---
 apply_global_font_size()
 
-
 # --- 3. APPLY STYLES & CONFIGURATIONS ---
 apply_custom_css()
 model = configure_gemini()
 
-# --- 4. TONE SELECTION DROPDOWN IN SIDEBAR ---
+# ❌ DELETED: Duplicate tone selection dropdown in sidebar
+
+# --- 5. DEFINE FUNCTION TO GET TONE PROMPT ---
 TONE_OPTIONS = {
     "Compassionate Listener": "You are a compassionate listener — soft, empathetic, patient — like a therapist who listens without judgment.",
     "Motivating Coach": "You are a motivating coach — energetic, encouraging, and action-focused — helping the user push through rough days.",
@@ -58,16 +59,6 @@ TONE_OPTIONS = {
     "Mindfulness Guide": "You are a mindfulness guide — calm, slow, and grounding — focused on breathing, presence, and awareness."
 }
 
-with st.sidebar:
-    st.header("🧠 Choose Your AI Tone")
-    selected_tone = st.selectbox(
-        "Select a personality tone:",
-        options=list(TONE_OPTIONS.keys()),
-        index=0
-    )
-    st.session_state.selected_tone = selected_tone
-
-# --- 5. DEFINE FUNCTION TO GET TONE PROMPT ---
 def get_tone_prompt():
     return TONE_OPTIONS.get(st.session_state.get("selected_tone", "Compassionate Listener"), TONE_OPTIONS["Compassionate Listener"])
 
@@ -114,4 +105,4 @@ st.markdown("""
     }
     setTimeout(scrollToBottom, 100);
 </script>
-""", unsafe_allow_html=True) 
+""", unsafe_allow_html=True)
